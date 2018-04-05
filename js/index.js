@@ -1,688 +1,193 @@
 function initMap() {
-  var landingSpot = {lat: 28.614744, lng: -80.693694};
+  var landingSpot = {lat: 52.016563, lng: 4.380914};
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 15,
+    zoom: 16,
     center: landingSpot,
     styles: [
       {
+        // land
         elementType: 'geometry', 
-        stylers: [{color: '#dddddd'}]
+        stylers: [{color: '#d1cfcf'}]
       },
-
+      
       {
+        // namen (straten / plaatsen) tekst lijn
         elementType: 'labels.text.stroke', 
-        stylers: [{color: '#eaeaea'}]
+        stylers: [{color: '#000000'}]
       },
 
-      {
+      { 
+        // Staten / landen tekst fill
         elementType: 'labels.text.fill', 
-        stylers: [{color: '#353535'}]
+        stylers: [{color: '#ffffff'}]
       },
 
       {
+        // namen (straten / plaatsen) tekst fill
         featureType: 'administrative.locality',
         elementType: 'labels.text.fill',
-        stylers: [{color: '#353535'}]
+        stylers: [{color: '#ffffff'}]
       },
 
       {
+        // tekst supermarkten / winkels fill
         featureType: 'poi',
         elementType: 'labels.text.fill',
-        stylers: [{color: '#353535'}]
+        stylers: [{color: '#ffffff'}]
       },
 
       {
+        // natuur
         featureType: 'poi.park',
         elementType: 'geometry',
-        stylers: [{color: '#639367'}]
+        stylers: [{color: '#00873a'}]
       },
 
       {
+        // natuur tekst
         featureType: 'poi.park',
         elementType: 'labels.text.fill',
-        stylers: [{color: '#353535'}]
+        stylers: [{color: '#ffffff'}]
       },
 
       {
+        // wegen
         featureType: 'road',
         elementType: 'geometry',
-        stylers: [{color: '#c4c4c4'}]
+        stylers: [{color: '#757575'}] 
       },
 
       {
+        //zijkanten weg
         featureType: 'road',
         elementType: 'geometry.stroke',
-        stylers: [{color: '#4c4c4c'}]
+        stylers: [{color: '#494949'}]
       },
 
       {
-          featureType: 'road',
-          elementType: 'labels.text.fill',
-          stylers: [{color: '#353535'}]
+        //
+        featureType: 'road',
+        elementType: 'labels.text.fill',
+        stylers: [{color: '#ffffff'}]
       },
 
       {
-          featureType: 'road.highway',
-          elementType: 'geometry',
-          stylers: [{color: '#990101'}]
+        //snelweg
+        featureType: 'road.highway',
+        elementType: 'geometry',
+        stylers: [{color: '#383838'}]
       },
 
       {
-          featureType: 'road.highway',
-          elementType: 'geometry.stroke',
-          stylers: [{color: '#4c4c4c'}]
+        //snelweg rand
+        featureType: 'road.highway',
+        elementType: 'geometry.stroke',
+        stylers: [{color: '#1c1c1c'}]
       },
 
       {
-          featureType: 'road.highway',
-          elementType: 'labels.text.fill',
-          stylers: [{color: '#353535'}]
+        //
+        featureType: 'road.highway',
+        elementType: 'labels.text.fill',
+        stylers: [{color: '#ffffff'}]
       },
 
       {
+        //vliegvelden en dergelijke
         featureType: 'transit',
         elementType: 'geometry',
-        stylers: [{color: '#ffb7fb'}]
+        stylers: [{color: '#6d0404'}]
       },
 
       {
+        //
         featureType: 'transit.station',
         elementType: 'labels.text.fill',
-        stylers: [{color: '#353535'}]
+        stylers: [{color: '#ffffff'}]
       },
 
       {
+        //
         featureType: 'water',
         elementType: 'geometry',
-        stylers: [{color: '#b7eaff'}]
+        stylers: [{color: '#1d2d7f'}]
       },
 
       {
+        //
         featureType: 'water',
         elementType: 'labels.text.fill',
-        stylers: [{color: '#353535'}]
+        stylers: [{color: '#ffffff'}]
       },
 
       {
+        //
         featureType: 'water',
         elementType: 'labels.text.stroke',
-        stylers: [{color: '#eaeaea'}]
+        stylers: [{color: '#ffffff'}]
       }
     ]
+
   });
-  
+
+  var contentString = 
+    '<div id="content">'+
+      '<h1 id="firstHeading" class="firstHeading">Landing Sport</h1>'+
+      '<div id="bodyContent">'+
+        '<p><b>Delftse Hout</b></p>' +
+        '<p>This is where you will be landing.</p>' +
+        '<p>When you are safely on the ground, </p>' +
+        '<p>you will be surrounded by the nature of Earth.</p>'+
+      '</div>'+
+    '</div>';
+
+  var infowindow = new google.maps.InfoWindow({
+    content: contentString
+  });
+
   var marker = new google.maps.Marker({
     position: landingSpot,
-    map: map
+    map: map,
+    title: 'Delft (Zuid Holland)',
+    icon: 'http://maps.google.com/mapfiles/kml/pushpin/red-pushpin.png'
   });
+
+  marker.addListener('click', function() {
+    infowindow.open(map, marker);
+  });
+
 }
 
 
-// // init map
-// var myMap;
 
-// function initMap() {
-//   // set optios for map 
-//   var landingSpot = {lat: 28.614744, lng: -80.693694};
-//   var mapOptions = {
-//     center: landingSpot,
-//     zoom: 17,
-//     styles: [
-//         {
-//           elementType: 'geometry', 
-//           stylers: [{color: '#dddddd'}]
-//         },
 
-//         {
-//           elementType: 'labels.text.stroke', 
-//           stylers: [{color: '#eaeaea'}]
-//         },
 
-//         {
-//           elementType: 'labels.text.fill', 
-//           stylers: [{color: '#353535'}]
-//         },
 
-//         {
-//           featureType: 'administrative.locality',
-//           elementType: 'labels.text.fill',
-//           stylers: [{color: '#353535'}]
-//         },
 
-//         {
-//           featureType: 'poi',
-//           elementType: 'labels.text.fill',
-//           stylers: [{color: '#353535'}]
-//         },
 
-//         {
-//           featureType: 'poi.park',
-//           elementType: 'geometry',
-//           stylers: [{color: '#639367'}]
-//         },
 
-//         {
-//           featureType: 'poi.park',
-//           elementType: 'labels.text.fill',
-//           stylers: [{color: '#353535'}]
-//         },
+//function weather() {
+//   var delft = {lat: 52.017314, lng: 4.378947};
+//   var contentString = api.openweathermap.org/data/2.5/weather?id=2172797'<div id="content">'+
+//     '<div id="siteNotice">'+
+//     '</div>'+
+//     '<h1 id="firstHeading" class="firstHeading">Delft</h1>'+
+//     '<div id="bodyContent">'+
+//     '<p><b>Delft</b> - Korftlaan 10, mooiste plekje van Delft</p>'+
+//     '</div>'+
+//     '</div>';
 
-//         {
-//           featureType: 'road',
-//           elementType: 'geometry',
-//           stylers: [{color: '#c4c4c4'}]
-//         },
-
-//         {
-//           featureType: 'road',
-//           elementType: 'geometry.stroke',
-//           stylers: [{color: '#4c4c4c'}]
-//         },
-
-//         {
-//             featureType: 'road',
-//             elementType: 'labels.text.fill',
-//             stylers: [{color: '#353535'}]
-//         },
-
-//         {
-//             featureType: 'road.highway',
-//             elementType: 'geometry',
-//             stylers: [{color: '#990101'}]
-//         },
-
-//         {
-//             featureType: 'road.highway',
-//             elementType: 'geometry.stroke',
-//             stylers: [{color: '#4c4c4c'}]
-//         },
-
-//         {
-//             featureType: 'road.highway',
-//             elementType: 'labels.text.fill',
-//             stylers: [{color: '#353535'}]
-//         },
-
-//         {
-//           featureType: 'transit',
-//           elementType: 'geometry',
-//           stylers: [{color: '#ffb7fb'}]
-//         },
-
-//         {
-//           featureType: 'transit.station',
-//           elementType: 'labels.text.fill',
-//           stylers: [{color: '#353535'}]
-//         },
-
-//         {
-//           featureType: 'water',
-//           elementType: 'geometry',
-//           stylers: [{color: '#b7eaff'}]
-//         },
-
-//         {
-//           featureType: 'water',
-//           elementType: 'labels.text.fill',
-//           stylers: [{color: '#353535'}]
-//         },
-
-//         {
-//           featureType: 'water',
-//           elementType: 'labels.text.stroke',
-//           stylers: [{color: '#eaeaea'}]
-//         }
-//       ]
-
-//   };
+//   var infowindow = new google.maps.InfoWindow({
+//     content: contentString
+//   });
 
 //   var marker = new google.maps.Marker({
 //     position: landingSpot,
-//     map: map
+//     map: map,
+//     title: 'Delft (Zuid Holland)',
 //   });
 
-//   // create map and add to page
-//   myMap = new google.maps.Map(document.getElementById('map'), mapOptions);
-// }
-
-// function showDog (image){
-// console.log(image)
-
-//   var image = {
-//     scaledSize: new google.maps.Size(20,32),
-//     origin: new google.maps.Point (0,0),
-//     url: image
-//   }
-
-//   // create a marker for de Haagse Hogeschool
-//   var hhsMarker = new google.maps.Marker({
-//     position: {
-//       lat: 28.614744, 
-//       lng: -80.693694,
-//     },
-
-//     icon: image,
-//     map: myMap,
-//     title: 'de Haagse Hogeschool'
-//   });
-
-// }
-
-// function getAPIdata() {
-
-//   // get dog names
-//   fetch('https://app.ticketmaster.com/discovery/v2/events/0B004F0401BD55E5/images.json?apikey=rMIJkubIWxD5AYHJiAHdIEhEyTAsgV83')
-
-//   // parse to JSON format
-//   .then(function(response) {
-//     return response.json();
-//   })
-
-//   // render weather per day
-//   .then(function(response) {
-
-//   //show Marker
-//   showDog(response.message);
-
-//   })
-
-//   // catch error
-//   .catch(function (error) {
-//     console.error('Request failed', error);
-//   });
-
-
-// }
-
-// // init data stream
-// getAPIdata();
-
-// {
-//     "fault": {
-//         "faultstring": "Invalid ApiKey",
-//         "detail": {
-//             "errorcode": "oauth.v2.InvalidApiKey"
-//         }
-//     }
-// }
-
-
-
-// type:"GET",
-//   url:"https://app.ticketmaster.com/discovery/v2/events.json?size=1&apikey=rMIJkubIWxD5AYHJiAHdIEhEyTAsgV83",
-//   async:true,
-//   dataType: "json",
-//   success: function(json) {
-//               console.log(json);
-//               // Parse the response.
-//               // Do other things.
-//            },
-//   error: function(xhr, status, err) {
-//               // This time, we do not end up here!
-//            }
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function initMap() {
-//   var landingSpot = {lat: 28.614744, lng: -80.693694};
-//   var map = new google.maps.Map(document.getElementById('map'), {
-//     zoom: 15,
-//     center: landingSpot,
-//     styles: [
-//       {
-//         elementType: 'geometry', 
-//         stylers: [{color: '#dddddd'}]
-//       },
-
-//       {
-//         elementType: 'labels.text.stroke', 
-//         stylers: [{color: '#eaeaea'}]
-//       },
-
-//       {
-//         elementType: 'labels.text.fill', 
-//         stylers: [{color: '#353535'}]
-//       },
-
-//       {
-//         featureType: 'administrative.locality',
-//         elementType: 'labels.text.fill',
-//         stylers: [{color: '#353535'}]
-//       },
-
-//       {
-//         featureType: 'poi',
-//         elementType: 'labels.text.fill',
-//         stylers: [{color: '#353535'}]
-//       },
-
-//       {
-//         featureType: 'poi.park',
-//         elementType: 'geometry',
-//         stylers: [{color: '#639367'}]
-//       },
-
-//       {
-//         featureType: 'poi.park',
-//         elementType: 'labels.text.fill',
-//         stylers: [{color: '#353535'}]
-//       },
-
-//       {
-//         featureType: 'road',
-//         elementType: 'geometry',
-//         stylers: [{color: '#c4c4c4'}]
-//       },
-
-//       {
-//         featureType: 'road',
-//         elementType: 'geometry.stroke',
-//         stylers: [{color: '#4c4c4c'}]
-//       },
-
-//       {
-//           featureType: 'road',
-//           elementType: 'labels.text.fill',
-//           stylers: [{color: '#353535'}]
-//       },
-
-//       {
-//           featureType: 'road.highway',
-//           elementType: 'geometry',
-//           stylers: [{color: '#990101'}]
-//       },
-
-//       {
-//           featureType: 'road.highway',
-//           elementType: 'geometry.stroke',
-//           stylers: [{color: '#4c4c4c'}]
-//       },
-
-//       {
-//           featureType: 'road.highway',
-//           elementType: 'labels.text.fill',
-//           stylers: [{color: '#353535'}]
-//       },
-
-//       {
-//         featureType: 'transit',
-//         elementType: 'geometry',
-//         stylers: [{color: '#ffb7fb'}]
-//       },
-
-//       {
-//         featureType: 'transit.station',
-//         elementType: 'labels.text.fill',
-//         stylers: [{color: '#353535'}]
-//       },
-
-//       {
-//         featureType: 'water',
-//         elementType: 'geometry',
-//         stylers: [{color: '#b7eaff'}]
-//       },
-
-//       {
-//         featureType: 'water',
-//         elementType: 'labels.text.fill',
-//         stylers: [{color: '#353535'}]
-//       },
-
-//       {
-//         featureType: 'water',
-//         elementType: 'labels.text.stroke',
-//         stylers: [{color: '#eaeaea'}]
-//       }
-//     ]
-//   });
-  
-//   var marker = new google.maps.Marker({
-//     position: landingSpot,
-//     map: map
+//   marker.addListener('click', function() {
+//     infowindow.open(map, marker);
 //   });
 // }
-
-// function getAPIdata() {
-
-//   // get dog names
-//   fetch('https://app.ticketmaster.com/discovery/v2/events')
-
-//   // parse to JSON format
-//   .then(function(response) {
-//     return response.json();
-//   })
-
-//   // render weather per day
-//   .then(function(response) {
-
-//     //show Marker
-//     showEvent(response.message);
-
-//   })
-
-//   // catch error
-//   .catch(function (xhr, status, err) {
-//     console.error('Request failed', error);
-//   });
-// }
-
-// // init data stream
-// getAPIdata();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // init map
-// var myMap;
-
-// function initMap() {
-//   // set optios for map 
-//   var landingSpot = {lat: 28.592399, lng: -80.660912}
-//   var mapOptions = {
-//     center: landingSpot,
-//     zoom: 17,
-//     styles: [
-//       {
-//         elementType: 'geometry', 
-//         stylers: [{color: '#dddddd'}]
-//       },
-
-//       {
-//         elementType: 'labels.text.stroke', 
-//         stylers: [{color: '#eaeaea'}]
-//       },
-
-//       {
-//         elementType: 'labels.text.fill', 
-//         stylers: [{color: '#353535'}]
-//       },
-
-//       {
-//         featureType: 'administrative.locality',
-//         elementType: 'labels.text.fill',
-//         stylers: [{color: '#353535'}]
-//       },
-
-//       {
-//         featureType: 'poi',
-//         elementType: 'labels.text.fill',
-//         stylers: [{color: '#353535'}]
-//       },
-
-//       {
-//         featureType: 'poi.park',
-//         elementType: 'geometry',
-//         stylers: [{color: '#639367'}]
-//       },
-
-//       {
-//         featureType: 'poi.park',
-//         elementType: 'labels.text.fill',
-//         stylers: [{color: '#353535'}]
-//       },
-
-//       {
-//         featureType: 'road',
-//         elementType: 'geometry',
-//         stylers: [{color: '#c4c4c4'}]
-//       },
-
-//       {
-//         featureType: 'road',
-//         elementType: 'geometry.stroke',
-//         stylers: [{color: '#4c4c4c'}]
-//       },
-
-//       {
-//           featureType: 'road',
-//           elementType: 'labels.text.fill',
-//           stylers: [{color: '#353535'}]
-//       },
-
-//       {
-//           featureType: 'road.highway',
-//           elementType: 'geometry',
-//           stylers: [{color: '#990101'}]
-//       },
-
-//       {
-//           featureType: 'road.highway',
-//           elementType: 'geometry.stroke',
-//           stylers: [{color: '#4c4c4c'}]
-//       },
-
-//       {
-//           featureType: 'road.highway',
-//           elementType: 'labels.text.fill',
-//           stylers: [{color: '#353535'}]
-//       },
-
-//       {
-//         featureType: 'transit',
-//         elementType: 'geometry',
-//         stylers: [{color: '#ffb7fb'}]
-//       },
-
-//       {
-//         featureType: 'transit.station',
-//         elementType: 'labels.text.fill',
-//         stylers: [{color: '#353535'}]
-//       },
-
-//       {
-//         featureType: 'water',
-//         elementType: 'geometry',
-//         stylers: [{color: '#b7eaff'}]
-//       },
-
-//       {
-//         featureType: 'water',
-//         elementType: 'labels.text.fill',
-//         stylers: [{color: '#353535'}]
-//       },
-
-//       {
-//         featureType: 'water',
-//         elementType: 'labels.text.stroke',
-//         stylers: [{color: '#eaeaea'}]
-//       }
-//     ]
-//   };
-
-//   var marker = new google.maps.Marker({
-//     position: landingSpot,
-//     map: map
-//   });
-
-//   // create map and add to page
-//   myMap = new google.maps.Map(document.getElementById('map'), mapOptions);
-// }
-
-// // function showEvent (image){
-// //   console.log(image)
-
-// //   var image = {
-// //     scaledSize: new google.maps.Size(20,32),
-// //     origin: new google.maps.Point (0,0),
-// //     url: image
-// //   }
-
-// //   // create a marker for the landing spot
-// //   var korftlaanMarker = new google.maps.Marker({
-// //     position: {
-// //       lat: 28.592399, 
-// //       lng: -80.660912,
-
-// //     },
-
-// //     icon: image,
-// //     map: myMap,
-// //     title: 'Korftlaan Delft'
-// //   });
-
-// // }
-
-
-
-// function getAPIdata() {
-
-//   // get dog names
-//   fetch('https://app.ticketmaster.com/discovery/v2/events')
-
-//   // parse to JSON format
-//   .then(function(response) {
-//     return response.json();
-//   })
-
-//   // render weather per day
-//   .then(function(response) {
-
-//     //show Marker
-//     showEvent(response.message);
-
-//   })
-
-//   // catch error
-//   .catch(function (xhr, status, err) {
-//     console.error('Request failed', error);
-//   });
-// }
-
-// // init data stream
-// getAPIdata();
-
-
